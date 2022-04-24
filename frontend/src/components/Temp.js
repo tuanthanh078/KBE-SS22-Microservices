@@ -7,7 +7,7 @@ class Temp extends Component {
     this.props = props;
     this.SERVER_URL = 'http://localhost:8000';
     this.GET_PRODUCTS = '/products';
-    this.emptyProduct = {id: "", name: ""};
+    this.emptyProduct = {id: "", name: "", selectedHardwares: {hardwareId: "", selectedAmount: ""}};
     this.state = {
       getProductByIdResponse: this.emptyProduct,
       getProductsResponse: []
@@ -18,7 +18,7 @@ class Temp extends Component {
 
   async componentDidMount() {
     await this.getProducts();
-    await this.getProductByID(1);
+    // await this.getProductByID(1);
   }
 
   async getProducts() {
@@ -49,11 +49,11 @@ class Temp extends Component {
         getProductsResponse:
         <ul>
           {this.state.getProductsResponse.map((x) => (
-            <li>id: {x.id}, name: {x.name}</li>
+            <li>{JSON.stringify(x)}</li>
           ))}
         </ul>
         getProductByIdResponse:
-        id: {this.state.getProductByIdResponse.id}, name: {this.state.getProductByIdResponse.name}
+        {JSON.stringify(this.state.getProductByIdResponse)}
       </div>
     );
   }
